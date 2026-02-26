@@ -1,6 +1,6 @@
-import styles from "./Login.module.css";
+import styles from "./LoginForm.module.css";
 
-function Login({ registerLink }) {
+function LoginForm({ registerLink }) {
   return (
     <div className={styles.loginContainer}>
       <h1>Log In</h1>
@@ -25,4 +25,4 @@ function Login({ registerLink }) {
   );
 }
 
-export default Login;
+export default LoginForm;
