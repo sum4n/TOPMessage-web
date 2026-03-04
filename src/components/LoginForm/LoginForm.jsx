@@ -11,7 +11,7 @@ function LoginForm({ registerLink }) {
         </div>
         <div className={styles.formLabel}>
           <label htmlFor="password">Password:</label>
-          <input type="text" id="password" name="password" />
+          <input type="password" id="password" name="password" />
         </div>
         <button type="submit" className={styles.loginButton}>
           Log in

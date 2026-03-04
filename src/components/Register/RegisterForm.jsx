@@ -11,11 +11,11 @@ function RegisterForm({ loginLink }) {
         </div>
         <div className={styles.formLabel}>
           <label htmlFor="password">Password:</label>
-          <input type="text" id="password" name="password" />
+          <input type="password" id="password" name="password" />
         </div>
         <div className={styles.formLabel}>
           <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input type="text" id="confirmPassword" name="confirmPassword" />
+          <input type="password" id="confirmPassword" name="confirmPassword" />
         </div>
         <button type="submit" className={styles.registerButton}>
           Register
