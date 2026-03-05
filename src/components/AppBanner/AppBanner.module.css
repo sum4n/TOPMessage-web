@@ -1,0 +1,12 @@
+.bannerContainer {
+  border-left: 1px solid grey;
+  flex: 2;
+  text-align: center;
+  background-image: url("/public/message_app.jpg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
