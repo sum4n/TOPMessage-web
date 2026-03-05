@@ -1,0 +1,38 @@
+.sidebarContainer {
+  background-color: black;
+  border-radius: 8px;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebarNavigation,
+.sidebarUserLinks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebarUserLinks {
+  justify-content: flex-end;
+  gap: 48px;
+  margin-bottom: 24px;
+}
+
+img {
+  width: 28px;
+  border: 4px solid black;
+}
+
+img:hover {
+  background-color: grey;
+  border: 4px solid grey;
+  border-radius: 8px;
+}
