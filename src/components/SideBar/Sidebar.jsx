@@ -5,21 +5,41 @@ function Sidebar() {
     <div className={styles.sidebarContainer}>
       <ul className={styles.sidebarNavigation}>
         <li>
-          <img src="/public/icons/message.svg" alt="" />
+          <img
+            className={styles.sidebarIcon}
+            src="/public/icons/message.svg"
+            alt="message"
+          />
         </li>
         <li>
-          <img src="/public/icons/friends.svg" alt="" />
+          <img
+            className={styles.sidebarIcon}
+            src="/public/icons/friends.svg"
+            alt="friends"
+          />
         </li>
         <li>
-          <img src="/public/icons/groups.svg" alt="" />
+          <img
+            className={styles.sidebarIcon}
+            src="/public/icons/groups.svg"
+            alt="groups"
+          />
         </li>
       </ul>
       <ul className={styles.sidebarUserLinks}>
         <li>
-          <img src="/public/icons/profile.svg" alt="" />
+          <img
+            className={styles.sidebarIcon}
+            src="/public/icons/profile.svg"
+            alt="profile"
+          />
         </li>
         <li>
-          <img src="/public/icons/logout.svg" alt="" />
+          <img
+            className={styles.sidebarIcon}
+            src="/public/icons/logout.svg"
+            alt="logout"
+          />
         </li>
       </ul>
     </div>
