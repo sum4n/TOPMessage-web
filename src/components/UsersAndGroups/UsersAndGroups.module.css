@@ -1,0 +1,15 @@
+.userAndGrpContainer {
+  flex: 1;
+}
+
+.userList {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  align-items: baseline;
+}
+
+.userList:hover {
+  background-color: grey;
+  border-radius: 4px;
+}
