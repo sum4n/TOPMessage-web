@@ -7,6 +7,7 @@ function RegisterForm({ loginLink }) {
   const [password, setPassword] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // Derived values
   const emailErrors = validationErrors.filter(
@@ -18,6 +19,7 @@ function RegisterForm({ loginLink }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     // console.log(e);
     console.log(email, password);
     fetch("http://localhost:3000/users/sign-up", {
@@ -48,6 +50,9 @@ function RegisterForm({ loginLink }) {
       })
       .catch(() => {
         setError("Network error. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }
 
@@ -94,7 +99,11 @@ function RegisterForm({ loginLink }) {
             </ul>
           )}
         </div>
-        <button type="submit" className={styles.registerButton}>
+        <button
+          type="submit"
+          className={styles.registerButton}
+          disabled={loading}
+        >
           Register
         </button>
       </form>
