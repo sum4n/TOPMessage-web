@@ -1,5 +1,5 @@
 import styles from "./RegisterForm.module.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 
 function RegisterForm({ loginLink }) {
@@ -8,6 +8,8 @@ function RegisterForm({ loginLink }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   // Derived values
   const emailErrors = validationErrors.filter(
@@ -20,7 +22,6 @@ function RegisterForm({ loginLink }) {
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    // console.log(e);
     // console.log(email, password);
     fetch("http://localhost:3000/users/sign-up", {
       method: "POST",
@@ -45,7 +46,10 @@ function RegisterForm({ loginLink }) {
           setPassword("");
           setValidationErrors([]);
           setError(null);
-          alert("User has been created");
+          // alert("User has been created");
+          navigate("/login", {
+            state: { message: "Account created, Please log in." },
+          });
         }
       })
       .catch(() => {
