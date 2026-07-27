@@ -21,7 +21,7 @@ function RegisterForm({ loginLink }) {
     e.preventDefault();
     setLoading(true);
     // console.log(e);
-    console.log(email, password);
+    // console.log(email, password);
     fetch("http://localhost:3000/users/sign-up", {
       method: "POST",
       headers: {
@@ -34,7 +34,7 @@ function RegisterForm({ loginLink }) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.errors) {
           setValidationErrors(data.errors);
         } else if (data.error) {
@@ -72,7 +72,12 @@ function RegisterForm({ loginLink }) {
             id="email"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setValidationErrors((prev) =>
+                prev.filter((error) => error.path !== "email"),
+              );
+            }}
           />
           {emailErrors.length > 0 && (
             <ul>
@@ -89,7 +94,12 @@ function RegisterForm({ loginLink }) {
             id="password"
             name="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setValidationErrors((prev) =>
+                prev.filter((error) => error.path !== "password"),
+              );
+            }}
           />
           {passwordErrors.length > 0 && (
             <ul>
