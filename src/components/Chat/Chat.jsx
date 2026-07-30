@@ -21,8 +21,8 @@ function Chat({ id }) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        setChats(data);
+        // console.log(data);
+        setChats(data.messages);
       })
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
@@ -30,7 +30,27 @@ function Chat({ id }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(chatContent);
+    setLoading(true);
+    // console.log(chatContent);
+    fetch(`http://localhost:3000/messages/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ messageContent: chatContent }),
+    })
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        setChats((prev) => [...prev, data.message]);
+        setChatContent("");
+      })
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
   }
 
   if (id === null) return <p>Start a conversation</p>;
@@ -55,7 +75,9 @@ function Chat({ id }) {
             value={chatContent}
             onChange={(e) => setChatContent(e.target.value)}
           />
-          <button type="submit">Send</button>
+          <button type="submit" disabled={loading}>
+            Send
+          </button>
         </form>
       </div>
     </>
