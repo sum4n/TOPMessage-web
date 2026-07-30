@@ -7,6 +7,7 @@ function Chat({ id }) {
   const [error, setError] = useState(null);
   const [chatContent, setChatContent] = useState("");
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitErrors, setSubmitErrors] = useState([]);
 
   useEffect(() => {
     if (id === null) return;
@@ -50,8 +51,12 @@ function Chat({ id }) {
       })
       .then((data) => {
         // console.log(data);
-        setChats((prev) => [...prev, data.message]);
-        setChatContent("");
+        if (data.errors) {
+          setSubmitErrors(data.errors);
+        } else {
+          setChats((prev) => [...prev, data.message]);
+          setChatContent("");
+        }
       })
       .catch((error) => setError(error))
       .finally(() => setSubmitLoading(false));
@@ -80,6 +85,13 @@ function Chat({ id }) {
             value={chatContent}
             onChange={(e) => setChatContent(e.target.value)}
           />
+          {submitErrors.length > 0 && (
+            <ul>
+              {submitErrors.map((error) => {
+                return <li key={error.msg}>{error.msg}</li>;
+              })}
+            </ul>
+          )}
           <button type="submit" disabled={submitLoading}>
             Send
           </button>
