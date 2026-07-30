@@ -83,7 +83,10 @@ function Chat({ id }) {
             type="text"
             name="content"
             value={chatContent}
-            onChange={(e) => setChatContent(e.target.value)}
+            onChange={(e) => {
+              setChatContent(e.target.value);
+              setSubmitErrors([]);
+            }}
           />
           {submitErrors.length > 0 && (
             <ul>
