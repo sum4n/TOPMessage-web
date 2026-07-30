@@ -10,6 +10,9 @@ function Chat({ id }) {
 
   useEffect(() => {
     if (id === null) return;
+
+    setLoading(true);
+    setChats([]);
     fetch(`http://localhost:3000/messages/${id}`, {
       method: "GET",
       headers: {
@@ -55,6 +58,7 @@ function Chat({ id }) {
   }
 
   if (id === null) return <p>Start a conversation</p>;
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
