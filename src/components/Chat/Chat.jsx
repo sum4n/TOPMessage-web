@@ -6,6 +6,7 @@ function Chat({ id }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [chatContent, setChatContent] = useState("");
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   useEffect(() => {
     if (id === null) return;
@@ -30,7 +31,7 @@ function Chat({ id }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
+    setSubmitLoading(true);
     // console.log(chatContent);
     fetch(`http://localhost:3000/messages/${id}`, {
       method: "POST",
@@ -50,7 +51,7 @@ function Chat({ id }) {
         setChatContent("");
       })
       .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+      .finally(() => setSubmitLoading(false));
   }
 
   if (id === null) return <p>Start a conversation</p>;
@@ -75,7 +76,7 @@ function Chat({ id }) {
             value={chatContent}
             onChange={(e) => setChatContent(e.target.value)}
           />
-          <button type="submit" disabled={loading}>
+          <button type="submit" disabled={submitLoading}>
             Send
           </button>
         </form>
