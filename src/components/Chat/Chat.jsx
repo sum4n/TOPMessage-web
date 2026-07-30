@@ -68,6 +68,7 @@ function Chat({ id }) {
   return (
     <>
       <div>
+        {chats.length === 0 && <p>No messages yet</p>}
         <ul>
           {chats.length > 0 &&
             chats.map((chat) => {
