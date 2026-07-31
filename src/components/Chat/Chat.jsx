@@ -9,6 +9,7 @@ function Chat({ id }) {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitErrors, setSubmitErrors] = useState([]);
 
+  // TODO: improve error handling.
   useEffect(() => {
     if (id === null) return;
 
@@ -22,21 +23,23 @@ function Chat({ id }) {
       },
     })
       .then((response) => {
-        console.log(response);
+        if (response.status > 400) {
+          throw new Error(response.statusText);
+        }
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
         setChats(data.messages);
       })
-      .catch((error) => setError(error))
+      .catch((error) => {
+        setError(error);
+      })
       .finally(() => setLoading(false));
   }, [id, token]);
 
   function handleSubmit(e) {
     e.preventDefault();
     setSubmitLoading(true);
-    // console.log(chatContent);
     fetch(`http://localhost:3000/messages/${id}`, {
       method: "POST",
       headers: {
@@ -46,11 +49,12 @@ function Chat({ id }) {
       body: JSON.stringify({ messageContent: chatContent }),
     })
       .then((response) => {
-        console.log(response);
+        if (response.status > 400) {
+          throw new Error(response.statusText);
+        }
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
         if (data.errors) {
           setSubmitErrors(data.errors);
         } else {
@@ -58,12 +62,15 @@ function Chat({ id }) {
           setChatContent("");
         }
       })
-      .catch((error) => setError(error))
+      .catch((error) => {
+        setError(error);
+      })
       .finally(() => setSubmitLoading(false));
   }
 
   if (id === null) return <p>Start a conversation</p>;
   if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <>
