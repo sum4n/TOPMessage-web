@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 
 function Chat({ id }) {
+  if (id === null) return <p>Start a new conversation</p>;
+
+  return <ChatWindow key={id} id={id} />;
+}
+
+export default Chat;
+
+function ChatWindow({ id }) {
   const token = localStorage.getItem("jwt-token");
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,10 +19,6 @@ function Chat({ id }) {
 
   // TODO: improve error handling.
   useEffect(() => {
-    if (id === null) return;
-
-    setLoading(true);
-    setChats([]);
     fetch(`http://localhost:3000/messages/${id}`, {
       method: "GET",
       headers: {
@@ -68,7 +72,6 @@ function Chat({ id }) {
       .finally(() => setSubmitLoading(false));
   }
 
-  if (id === null) return <p>Start a conversation</p>;
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
 
@@ -111,5 +114,3 @@ function Chat({ id }) {
     </>
   );
 }
-
-export default Chat;
