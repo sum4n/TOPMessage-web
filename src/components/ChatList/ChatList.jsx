@@ -1,5 +1,6 @@
 import Chat from "../Chat/Chat.jsx";
 import { useState } from "react";
+import styles from "./ChatList.module.css";
 
 function ChatList({ data, loading, error }) {
   const [chatId, setChatId] = useState(null);
@@ -14,10 +15,16 @@ function ChatList({ data, loading, error }) {
   return (
     <>
       {data.length > 0 && (
-        <ul>
+        <ul className={styles.list}>
           {data.map((chat) => {
             return (
-              <li key={chat.userId} id={chat.userId} onClick={handleClick}>
+              <li
+                className={`${chat.userId === chatId ? styles.selected : ""}
+                 ${styles.listItems} `}
+                key={chat.userId}
+                id={chat.userId}
+                onClick={handleClick}
+              >
                 {chat.user}
               </li>
             );
