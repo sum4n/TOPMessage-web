@@ -80,6 +80,28 @@ function ChatWindow({ id }) {
   return (
     <>
       <div className={styles.chatContainer}>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="content"
+            value={chatContent}
+            onChange={(e) => {
+              setChatContent(e.target.value);
+              setSubmitErrors([]);
+            }}
+          />
+          <button type="submit" disabled={submitLoading}>
+            Send
+          </button>
+        </form>
+        {submitErrors.length > 0 && (
+          <ul>
+            {submitErrors.map((error) => {
+              return <li key={error.msg}>{error.msg}</li>;
+            })}
+          </ul>
+        )}
+
         {chats.length === 0 && <p>No messages yet</p>}
         <ul className={styles.chatList}>
           {chats.length > 0 &&
@@ -106,27 +128,6 @@ function ChatWindow({ id }) {
               );
             })}
         </ul>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="content"
-            value={chatContent}
-            onChange={(e) => {
-              setChatContent(e.target.value);
-              setSubmitErrors([]);
-            }}
-          />
-          {submitErrors.length > 0 && (
-            <ul>
-              {submitErrors.map((error) => {
-                return <li key={error.msg}>{error.msg}</li>;
-              })}
-            </ul>
-          )}
-          <button type="submit" disabled={submitLoading}>
-            Send
-          </button>
-        </form>
       </div>
     </>
   );
