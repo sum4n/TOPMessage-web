@@ -1,0 +1,41 @@
+.chatContainer {
+  flex-grow: 3;
+  padding: 0 8px 0 8px;
+}
+
+.chatList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chatListItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatContent,
+.chatDate {
+  margin-bottom: 18px;
+  padding: 8px 24px 8px 8px;
+  border-radius: 8px;
+  box-shadow: 0px 1px 1px 0px grey;
+}
+
+.chatDate {
+  font-size: smaller;
+  box-shadow: 0px 0px 1px 0px grey;
+  align-self: center;
+}
+
+.chatContent {
+  background-color: #d9fdd3;
+}
+
+.sendMessage {
+  align-self: flex-end;
+}
+
+.receivedMessage {
+  align-self: flex-start;
+}

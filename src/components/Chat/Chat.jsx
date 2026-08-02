@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./Chat.module.css";
 
 function Chat({ id }) {
   if (id === null) return <p>Start a new conversation</p>;
@@ -33,6 +34,7 @@ function ChatWindow({ id }) {
         return response.json();
       })
       .then((data) => {
+        // console.log(data);
         setChats(data.messages);
       })
       .catch((error) => {
@@ -77,14 +79,24 @@ function ChatWindow({ id }) {
 
   return (
     <>
-      <div>
+      <div className={styles.chatContainer}>
         {chats.length === 0 && <p>No messages yet</p>}
-        <ul>
+        <ul className={styles.chatList}>
           {chats.length > 0 &&
             chats.map((chat) => {
               return (
-                <li key={chat.id}>
-                  {chat.content}-{chat.createdAT}
+                <li className={styles.chatListItems} key={chat.id}>
+                  <p className={styles.chatDate}>{chat.createdAT}</p>
+                  <p
+                    className={`${styles.chatContent} 
+                                ${
+                                  id === chat.senderId
+                                    ? styles.receivedMessage
+                                    : styles.sendMessage
+                                }`}
+                  >
+                    {chat.content}
+                  </p>
                 </li>
               );
             })}
