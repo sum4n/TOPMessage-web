@@ -86,7 +86,9 @@ function ChatWindow({ id }) {
             chats.map((chat) => {
               return (
                 <li className={styles.chatListItems} key={chat.id}>
-                  <p className={styles.chatDate}>{chat.createdAT}</p>
+                  <p className={styles.chatDate}>
+                    {new Date(chat.createdAT).toLocaleDateString()}
+                  </p>
                   <p
                     className={`${styles.chatContent} 
                                 ${
@@ -95,7 +97,10 @@ function ChatWindow({ id }) {
                                     : styles.sendMessage
                                 }`}
                   >
-                    {chat.content}
+                    {chat.content}{" "}
+                    <span className={styles.contentDate}>
+                      {new Date(chat.createdAT).toLocaleTimeString()}
+                    </span>
                   </p>
                 </li>
               );
