@@ -34,7 +34,7 @@ function ChatWindow({ id }) {
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setChats(data.messages);
       })
       .catch((error) => {
@@ -64,7 +64,7 @@ function ChatWindow({ id }) {
         if (data.errors) {
           setSubmitErrors(data.errors);
         } else {
-          setChats((prev) => [...prev, data.message]);
+          setChats((prev) => [data.message, ...prev]);
           setChatContent("");
         }
       })
