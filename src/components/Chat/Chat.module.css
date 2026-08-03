@@ -29,12 +29,11 @@
   margin-bottom: 18px;
   padding: 8px 24px 8px 8px;
   border-radius: 8px;
-  box-shadow: 0px 1px 1px 0px grey;
+  box-shadow: 0px 0px 1px 0px grey;
 }
 
 .chatDate {
   font-size: smaller;
-  box-shadow: 0px 0px 1px 0px grey;
   align-self: center;
 }
 
