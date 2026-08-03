@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import styles from "./Chat.module.css";
+import ChatHeader from "../ChatHeader/ChatHeader";
 
-function Chat({ id }) {
-  if (id === null) return <p>Start a new conversation</p>;
+function Chat({ id, user }) {
+  if (id === null || user === null) return <p>Start a new conversation</p>;
 
-  return <ChatWindow key={id} id={id} />;
+  return <ChatWindow key={id} id={id} user={user} />;
 }
 
 export default Chat;
 
-function ChatWindow({ id }) {
+function ChatWindow({ id, user }) {
   const token = localStorage.getItem("jwt-token");
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -132,6 +133,8 @@ function ChatWindow({ id }) {
               );
             })}
         </ul>
+
+        <ChatHeader user={user} />
       </div>
     </>
   );
