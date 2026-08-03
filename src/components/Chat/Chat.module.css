@@ -54,3 +54,32 @@
   font-size: x-small;
   vertical-align: sub;
 }
+
+.formContainer {
+  position: sticky;
+  bottom: 0px;
+  margin-top: 10px;
+  background-color: white;
+}
+
+.form {
+  margin-bottom: 16px;
+
+  padding: 12px;
+  border: 1px solid grey;
+  border-radius: 16px;
+  display: flex;
+
+  background-color: white;
+}
+
+.formInput {
+  color: black;
+  flex: 2;
+
+  border: none;
+}
+
+.formInput:focus {
+  outline: none;
+}

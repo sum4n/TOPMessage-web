@@ -34,7 +34,7 @@ function ChatWindow({ id }) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setChats(data.messages);
       })
       .catch((error) => {
@@ -80,27 +80,31 @@ function ChatWindow({ id }) {
   return (
     <>
       <div className={styles.chatContainer}>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="content"
-            value={chatContent}
-            onChange={(e) => {
-              setChatContent(e.target.value);
-              setSubmitErrors([]);
-            }}
-          />
-          <button type="submit" disabled={submitLoading}>
-            Send
-          </button>
-        </form>
-        {submitErrors.length > 0 && (
-          <ul>
-            {submitErrors.map((error) => {
-              return <li key={error.msg}>{error.msg}</li>;
-            })}
-          </ul>
-        )}
+        <div className={styles.formContainer}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <input
+              className={styles.formInput}
+              type="text"
+              name="content"
+              value={chatContent}
+              placeholder="Type a message"
+              onChange={(e) => {
+                setChatContent(e.target.value);
+                setSubmitErrors([]);
+              }}
+            />
+            <button type="submit" disabled={submitLoading}>
+              Send
+            </button>
+          </form>
+          {submitErrors.length > 0 && (
+            <ul>
+              {submitErrors.map((error) => {
+                return <li key={error.msg}>{error.msg}</li>;
+              })}
+            </ul>
+          )}
+        </div>
 
         {chats.length === 0 && <p>No messages yet</p>}
         <ul className={styles.chatList}>
