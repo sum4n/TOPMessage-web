@@ -48,6 +48,7 @@
 
 .receivedMessage {
   align-self: flex-start;
+  background-color: white;
 }
 
 .contentDate {
