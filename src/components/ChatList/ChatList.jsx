@@ -6,9 +6,8 @@ function ChatList({ data, loading, error }) {
   const [chatId, setChatId] = useState(null);
   const [chatUser, setChatUser] = useState(null);
 
-  function handleClick(e, chat) {
-    console.log(e.target.id);
-    setChatId(parseInt(e.target.id));
+  function handleClick(chat) {
+    setChatId(chat.userId);
     setChatUser({ user: chat.user, userId: chat.userId });
   }
 
@@ -25,7 +24,7 @@ function ChatList({ data, loading, error }) {
                  ${styles.listItems} `}
                 key={chat.userId}
                 id={chat.userId}
-                onClick={(event) => handleClick(event, chat)}
+                onClick={() => handleClick(chat)}
               >
                 {chat.user}
               </li>
