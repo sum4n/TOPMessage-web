@@ -4,10 +4,12 @@ import styles from "./ChatList.module.css";
 
 function ChatList({ data, loading, error }) {
   const [chatId, setChatId] = useState(null);
+  const [chatUser, setChatUser] = useState(null);
 
-  function handleClick(e) {
-    // console.log(e.target.id);
+  function handleClick(e, chat) {
+    console.log(e.target.id);
     setChatId(parseInt(e.target.id));
+    setChatUser({ user: chat.user, userId: chat.userId });
   }
 
   if (loading) return <p>Loading...</p>;
@@ -23,7 +25,7 @@ function ChatList({ data, loading, error }) {
                  ${styles.listItems} `}
                 key={chat.userId}
                 id={chat.userId}
-                onClick={handleClick}
+                onClick={(event) => handleClick(event, chat)}
               >
                 {chat.user}
               </li>
@@ -31,7 +33,7 @@ function ChatList({ data, loading, error }) {
           })}{" "}
         </ul>
       )}
-      <Chat id={chatId} />
+      <Chat id={chatId} chatUser={chatUser} />
     </>
   );
 }
