@@ -1,6 +1,7 @@
 import Chat from "../Chat/Chat.jsx";
 import { useState } from "react";
 import styles from "./ChatList.module.css";
+import Header from "../Header/Header.jsx";
 
 function ChatList({ chats, loading, error }) {
   const [chatId, setChatId] = useState(null);
@@ -16,23 +17,26 @@ function ChatList({ chats, loading, error }) {
   if (error) return <p>A network error was encountered</p>;
   return (
     <>
-      {chats.length > 0 && (
-        <ul className={styles.list}>
-          {chats.map((chat) => {
-            return (
-              <li
-                className={`${chat.userId === chatId ? styles.selected : ""}
+      <div className={styles.chatListContainer}>
+        <Header />
+        {chats.length > 0 && (
+          <ul className={styles.list}>
+            {chats.map((chat) => {
+              return (
+                <li
+                  className={`${chat.userId === chatId ? styles.selected : ""}
                  ${styles.listItems} `}
-                key={chat.userId}
-                id={chat.userId}
-                onClick={() => handleClick(chat)}
-              >
-                {chat.user}
-              </li>
-            );
-          })}{" "}
-        </ul>
-      )}
+                  key={chat.userId}
+                  id={chat.userId}
+                  onClick={() => handleClick(chat)}
+                >
+                  {chat.user}
+                </li>
+              );
+            })}{" "}
+          </ul>
+        )}
+      </div>{" "}
       <Chat id={chatId} chatUser={chatUser} />
     </>
   );
