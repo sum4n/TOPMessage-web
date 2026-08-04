@@ -24,15 +24,16 @@ function App() {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status >= 400) {
           throw new Error("server error");
         }
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        setUser(data.user.email);
+        // console.log(data);
+        // setUser(data.user.email);
+        setUser(data.user);
       })
       .catch((error) => setUserError(error))
       .finally(() => setUserLoading(false));
@@ -45,14 +46,14 @@ function App() {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status >= 400) {
           throw new Error("server error");
         }
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setChats(data.users);
       })
       .catch((error) => setChatsError(error))
@@ -76,8 +77,12 @@ function App() {
       )}
       {user && (
         <>
-          <p>{user}</p>
-          <ChatList data={chats} loading={chatsLoading} error={chatsError} />
+          <ChatList
+            user={user}
+            chats={chats}
+            loading={chatsLoading}
+            error={chatsError}
+          />
         </>
       )}
     </>
