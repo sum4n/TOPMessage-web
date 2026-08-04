@@ -1,11 +1,14 @@
-.list {
+.chatListContainer {
+  overflow-y: auto;
+  flex-shrink: 0;
   border: 1px solid grey;
+  margin: 0;
+}
+
+.list {
   list-style-type: none;
   margin: 0;
   padding: 0;
-
-  overflow-y: auto;
-  flex-shrink: 0;
 }
 
 .listItems {
