@@ -2,8 +2,9 @@ import Chat from "../Chat/Chat.jsx";
 import { useState } from "react";
 import styles from "./ChatList.module.css";
 
-function ChatList({ data, loading, error }) {
+function ChatList({ chats, loading, error }) {
   const [chatId, setChatId] = useState(null);
+  // needed for ChatHeader (prop drilling)
   const [chatUser, setChatUser] = useState(null);
 
   function handleClick(chat) {
@@ -15,9 +16,9 @@ function ChatList({ data, loading, error }) {
   if (error) return <p>A network error was encountered</p>;
   return (
     <>
-      {data.length > 0 && (
+      {chats.length > 0 && (
         <ul className={styles.list}>
-          {data.map((chat) => {
+          {chats.map((chat) => {
             return (
               <li
                 className={`${chat.userId === chatId ? styles.selected : ""}
