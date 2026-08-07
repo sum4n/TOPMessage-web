@@ -59,7 +59,7 @@ function Sidebar({ user, chats, loading, error }) {
           </li>
         </ul>
       </div>
-      {barState === "profile" && <UserProfile />}
+      {barState === "profile" && <UserProfile user={user} />}
       {barState === "chats" && (
         <ChatList user={user} chats={chats} loading={loading} error={error} />
       )}
