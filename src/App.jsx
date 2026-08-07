@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SideBar from "./components/SideBar/Sidebar.jsx";
 import { Link } from "react-router";
-import ChatList from "./components/ChatList/ChatList.jsx";
 
 function App() {
   const token = localStorage.getItem("jwt-token");
@@ -64,7 +63,6 @@ function App() {
 
   return (
     <>
-      <SideBar />
       {user === null && (
         <div>
           <p>
@@ -77,7 +75,7 @@ function App() {
       )}
       {user && (
         <>
-          <ChatList
+          <SideBar
             user={user}
             chats={chats}
             loading={chatsLoading}
