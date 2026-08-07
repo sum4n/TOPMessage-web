@@ -17,7 +17,7 @@ function Sidebar({ user, chats, loading, error }) {
         <ul className={styles.sidebarNavigation}>
           <li onClick={handleClick} id="chats">
             <img
-              className={styles.sidebarIcon}
+              className={`${styles.sidebarIcon} ${barState === "chats" && styles.sidebarSelected}`}
               src="/public/icons/message.svg"
               alt="message"
             />
@@ -40,7 +40,7 @@ function Sidebar({ user, chats, loading, error }) {
         <ul className={styles.sidebarUserLinks}>
           <li id="profile" onClick={handleClick}>
             <img
-              className={styles.sidebarIcon}
+              className={`${styles.sidebarIcon} ${barState === "profile" && styles.sidebarSelected}`}
               src="/public/icons/profile.svg"
               alt="profile"
             />
@@ -54,8 +54,8 @@ function Sidebar({ user, chats, loading, error }) {
           </li>
         </ul>
       </div>
-      {barState == "profile" && <UserProfile />}
-      {barState == "chats" && (
+      {barState === "profile" && <UserProfile />}
+      {barState === "chats" && (
         <ChatList user={user} chats={chats} loading={loading} error={error} />
       )}
     </>
