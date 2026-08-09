@@ -1,6 +1,6 @@
 import styles from "./RegisterForm.module.css";
 import { Link, useNavigate } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function RegisterForm({ loginLink }) {
   const [email, setEmail] = useState("");
@@ -18,6 +18,13 @@ function RegisterForm({ loginLink }) {
   const passwordErrors = validationErrors.filter(
     (error) => error.path === "password",
   );
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt-token");
+    if (token) {
+      navigate("/", { replace: true });
+    }
+  }, [navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
