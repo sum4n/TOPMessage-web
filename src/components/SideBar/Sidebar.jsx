@@ -2,13 +2,21 @@ import { useState } from "react";
 import styles from "./Sidebar.module.css";
 import UserProfile from "../UserProfile/UserProfile";
 import ChatList from "../ChatList/ChatList";
+import { useNavigate } from "react-router";
 
 function Sidebar({ user, chats, loading, error }) {
   const [barState, setBarState] = useState("chats");
 
+  const navigate = useNavigate();
+
   function handleClick(e) {
     // console.log(e.currentTarget.id);
     setBarState(e.currentTarget.id);
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("jwt-token");
+    navigate("/login");
   }
 
   return (
@@ -49,7 +57,7 @@ function Sidebar({ user, chats, loading, error }) {
               alt="profile"
             />
           </li>
-          <li>
+          <li onClick={handleLogout}>
             <img
               title="Logout"
               className={styles.sidebarIcon}
