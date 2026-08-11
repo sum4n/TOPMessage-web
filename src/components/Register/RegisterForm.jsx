@@ -19,12 +19,12 @@ function RegisterForm({ loginLink }) {
     (error) => error.path === "password",
   );
 
+  const token = localStorage.getItem("jwt-token");
   useEffect(() => {
-    const token = localStorage.getItem("jwt-token");
     if (token) {
       navigate("/", { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, token]);
 
   function handleSubmit(e) {
     e.preventDefault();

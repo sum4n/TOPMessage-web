@@ -22,12 +22,12 @@ function LoginForm({ registerLink }) {
     (error) => error.path === "password",
   );
 
+  const token = localStorage.getItem("jwt-token");
   useEffect(() => {
-    const token = localStorage.getItem("jwt-token");
     if (token) {
       navigate("/", { replace: true });
     }
-  }, [navigate]);
+  }, [token, navigate]);
 
   function handleSumbit(e) {
     e.preventDefault();
