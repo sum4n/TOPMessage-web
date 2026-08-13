@@ -6,9 +6,9 @@ import { Link } from "react-router";
 function App() {
   const token = localStorage.getItem("jwt-token");
 
-  const [user, setUser] = useState(null);
-  const [userLoading, setUserLoading] = useState(true);
-  const [userError, setUserError] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [profileLoading, setProfileLoading] = useState(true);
+  const [profileError, setProfileError] = useState(null);
 
   const [chats, setChats] = useState([]);
   const [chatsLoading, setChatsLoading] = useState(true);
@@ -32,10 +32,10 @@ function App() {
       .then((data) => {
         // console.log(data);
         // setUser(data.user.email);
-        setUser(data.user);
+        setProfile(data.user);
       })
-      .catch((error) => setUserError(error))
-      .finally(() => setUserLoading(false));
+      .catch((error) => setProfileError(error))
+      .finally(() => setProfileLoading(false));
 
     fetch("http://localhost:3000/users/chats", {
       method: "GET",
@@ -59,11 +59,11 @@ function App() {
       .finally(() => setChatsLoading(false));
   }, [token]);
 
-  if (userLoading) return <p>Loading...</p>;
+  if (profileLoading) return <p>Loading...</p>;
 
   return (
     <>
-      {user === null && (
+      {profile === null && (
         <div>
           <p>
             New user? <Link to="register">Register</Link>
@@ -73,10 +73,10 @@ function App() {
           </p>
         </div>
       )}
-      {user && (
+      {profile && (
         <>
           <SideBar
-            user={user}
+            profile={profile}
             chats={chats}
             loading={chatsLoading}
             error={chatsError}

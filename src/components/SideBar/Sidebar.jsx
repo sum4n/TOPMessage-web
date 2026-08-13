@@ -4,7 +4,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import ChatList from "../ChatList/ChatList";
 import { useNavigate } from "react-router";
 
-function Sidebar({ user, chats, loading, error }) {
+function Sidebar({ profile, chats, loading, error }) {
   const [barState, setBarState] = useState("chats");
 
   const navigate = useNavigate();
@@ -67,9 +67,14 @@ function Sidebar({ user, chats, loading, error }) {
           </li>
         </ul>
       </div>
-      {barState === "profile" && <UserProfile user={user} />}
+      {barState === "profile" && <UserProfile profile={profile} />}
       {barState === "chats" && (
-        <ChatList user={user} chats={chats} loading={loading} error={error} />
+        <ChatList
+          profile={profile}
+          chats={chats}
+          loading={loading}
+          error={error}
+        />
       )}
     </>
   );

@@ -1,15 +1,15 @@
-function UserProfile({ user }) {
+function UserProfile({ profile }) {
   return (
     <>
       <div>
         <p>Email:</p>
-        <p>{user.email}</p>
+        <p>{profile.email}</p>
         <hr />
         <p>Name:</p>
-        <p>{user.name || "Set your name"}</p>
+        <p>{profile.name || "Set your name"}</p>
         <hr />
         <p>Joined at:</p>
-        <p>{user.joinedAt}</p>
+        <p>{profile.joinedAt}</p>
       </div>
     </>
   );
