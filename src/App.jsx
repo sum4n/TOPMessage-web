@@ -10,9 +10,43 @@ function App() {
   const [profileLoading, setProfileLoading] = useState(true);
   const [profileError, setProfileError] = useState(null);
 
+  const [profileUpdating, setProfileUpdating] = useState(false);
+  const [profileUpdateError, setProfileUpdateError] = useState(null);
+
   const [chats, setChats] = useState([]);
   const [chatsLoading, setChatsLoading] = useState(true);
   const [chatsError, setChatsError] = useState(null);
+
+  function updateProfile(e, name) {
+    e.preventDefault();
+    setProfileUpdating(true);
+
+    fetch("http://localhost:3000/users/profile", {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: name }),
+    })
+      .then((response) => {
+        // if (response.status > 400) {
+        //   throw new Error(response.statusText);
+        // }
+        return response.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        if (data.errors) {
+          setProfileUpdateError(data.errors);
+        } else {
+          setProfile(data.profile);
+          setProfileUpdateError(null);
+        }
+      })
+      .catch((error) => setProfileUpdateError(error))
+      .finally(() => setProfileUpdating(false));
+  }
 
   useEffect(() => {
     fetch("http://localhost:3000/users/profile", {
@@ -80,6 +114,9 @@ function App() {
             chats={chats}
             loading={chatsLoading}
             error={chatsError}
+            updateProfile={updateProfile}
+            profileUpdating={profileUpdating}
+            profileUpdateError={profileUpdateError}
           />
         </>
       )}
