@@ -42,7 +42,7 @@ function UserProfile({
         )}
         <hr />
         <p>Joined at:</p>
-        <p>{profile.joinedAt}</p>
+        <p>{new Date(profile.joinedAt).toLocaleString()}</p>
       </div>
     </>
   );
