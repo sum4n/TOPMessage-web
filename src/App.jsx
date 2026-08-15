@@ -21,6 +21,8 @@ function App() {
 
   function updateProfile(e, name) {
     e.preventDefault();
+    setProfileUpdateError(null);
+    setProfieUpdatingGeneralError(null);
     setProfileUpdating(true);
 
     fetch("http://localhost:3000/users/profile", {
