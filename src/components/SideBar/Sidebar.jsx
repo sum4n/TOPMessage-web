@@ -9,6 +9,7 @@ function Sidebar({
   chats,
   loading,
   error,
+  profileUpdatingGeneralError,
   updateProfile,
   profileUpdating,
   profileUpdateError,
@@ -81,6 +82,7 @@ function Sidebar({
           updateProfile={updateProfile}
           profileUpdating={profileUpdating}
           profileUpdateError={profileUpdateError}
+          profileUpdatingGeneralError={profileUpdatingGeneralError}
         />
       )}
       {barState === "chats" && (

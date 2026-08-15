@@ -5,6 +5,7 @@ function UserProfile({
   updateProfile,
   profileUpdating,
   profileUpdateError,
+  profileUpdatingGeneralError,
 }) {
   const [name, setName] = useState(profile.name || "");
 
@@ -32,6 +33,11 @@ function UserProfile({
             {profileUpdateError.map((error) => {
               return <li key={error.msg}>{error.msg}</li>;
             })}
+          </ul>
+        )}
+        {profileUpdatingGeneralError && (
+          <ul>
+            <li>Can not update name: {profileUpdatingGeneralError}</li>
           </ul>
         )}
         <hr />

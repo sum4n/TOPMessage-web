@@ -12,6 +12,8 @@ function App() {
 
   const [profileUpdating, setProfileUpdating] = useState(false);
   const [profileUpdateError, setProfileUpdateError] = useState(null);
+  const [profileUpdatingGeneralError, setProfieUpdatingGeneralError] =
+    useState(null);
 
   const [chats, setChats] = useState([]);
   const [chatsLoading, setChatsLoading] = useState(true);
@@ -44,7 +46,7 @@ function App() {
           setProfileUpdateError(null);
         }
       })
-      .catch((error) => setProfileUpdateError(error))
+      .catch(() => setProfieUpdatingGeneralError("Network error"))
       .finally(() => setProfileUpdating(false));
   }
 
@@ -114,6 +116,7 @@ function App() {
             chats={chats}
             loading={chatsLoading}
             error={chatsError}
+            profileUpdatingGeneralError={profileUpdatingGeneralError}
             updateProfile={updateProfile}
             profileUpdating={profileUpdating}
             profileUpdateError={profileUpdateError}
