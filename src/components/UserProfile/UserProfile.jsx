@@ -46,6 +46,14 @@ function ProfileName({ profile, updateProfile, profileUpdating }) {
   const [name, setName] = useState(profile.name || "");
   const [hideForm, setHideForm] = useState(true);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const isSuccess = await updateProfile(name);
+    if (isSuccess) {
+      setHideForm(true);
+    }
+  }
+
   return (
     <>
       <p>Name:</p>
@@ -59,7 +67,7 @@ function ProfileName({ profile, updateProfile, profileUpdating }) {
           </div>
         )}{" "}
         {!hideForm && (
-          <form onSubmit={(e) => updateProfile(e, name)}>
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               value={name}
