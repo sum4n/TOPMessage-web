@@ -12,20 +12,19 @@ function App() {
 
   const [profileUpdating, setProfileUpdating] = useState(false);
   const [profileUpdateError, setProfileUpdateError] = useState(null);
-  const [profileUpdatingGeneralError, setProfieUpdatingGeneralError] =
+  const [profileUpdatingGeneralError, setProfileUpdatingGeneralError] =
     useState(null);
 
   const [chats, setChats] = useState([]);
   const [chatsLoading, setChatsLoading] = useState(true);
   const [chatsError, setChatsError] = useState(null);
 
-  function updateProfile(e, name) {
-    e.preventDefault();
+  function updateProfile(name) {
     setProfileUpdateError(null);
-    setProfieUpdatingGeneralError(null);
+    setProfileUpdatingGeneralError(null);
     setProfileUpdating(true);
 
-    fetch("http://localhost:3000/users/profile", {
+    return fetch("http://localhost:3000/users/profile", {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
@@ -43,12 +42,17 @@ function App() {
         // console.log(data);
         if (data.errors) {
           setProfileUpdateError(data.errors);
+          return false;
         } else {
           setProfile(data.profile);
           setProfileUpdateError(null);
+          return true;
         }
       })
-      .catch(() => setProfieUpdatingGeneralError("Network error"))
+      .catch(() => {
+        setProfileUpdatingGeneralError("Network error");
+        return false;
+      })
       .finally(() => setProfileUpdating(false));
   }
 
