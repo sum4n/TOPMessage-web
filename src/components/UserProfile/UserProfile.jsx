@@ -7,27 +7,19 @@ function UserProfile({
   profileUpdateError,
   profileUpdatingGeneralError,
 }) {
-  const [name, setName] = useState(profile.name || "");
-
   return (
     <>
       <div>
         <p>Email:</p>
         <p>{profile.email}</p>
         <hr />
-        <p>Name:</p>
-        <p>{profile.name || "Set your name"}</p>
-        <form onSubmit={(e) => updateProfile(e, name)}>
-          <input
-            type="text"
-            value={name}
-            placeholder="Update name"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <button type="submit" disabled={profileUpdating}>
-            Update name
-          </button>
-        </form>
+
+        <ProfileName
+          profile={profile}
+          updateProfile={updateProfile}
+          profileUpdating={profileUpdating}
+        />
+
         {profileUpdateError && (
           <ul>
             {profileUpdateError.map((error) => {
@@ -49,3 +41,44 @@ function UserProfile({
 }
 
 export default UserProfile;
+
+function ProfileName({ profile, updateProfile, profileUpdating }) {
+  const [name, setName] = useState(profile.name || "");
+  const [hideForm, setHideForm] = useState(true);
+
+  return (
+    <>
+      <p>Name:</p>
+      <div>
+        {hideForm && (
+          <div>
+            <p>{profile.name || "Set your name"}</p>
+            <button onClick={() => setHideForm(false)}>
+              {profile.name ? "Edit" : "Set name"}
+            </button>
+          </div>
+        )}{" "}
+        {!hideForm && (
+          <form onSubmit={(e) => updateProfile(e, name)}>
+            <input
+              type="text"
+              value={name}
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <button type="submit" disabled={profileUpdating}>
+              Save
+            </button>
+            <button
+              type="button"
+              onClick={() => setHideForm(true)}
+              disabled={profileUpdating}
+            >
+              Close
+            </button>
+          </form>
+        )}{" "}
+      </div>
+    </>
+  );
+}
