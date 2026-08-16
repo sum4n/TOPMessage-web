@@ -79,7 +79,10 @@ function ProfileName({ profile, updateProfile, profileUpdating }) {
             </button>
             <button
               type="button"
-              onClick={() => setHideForm(true)}
+              onClick={() => {
+                setHideForm(true);
+                setName(profile.name || "");
+              }}
               disabled={profileUpdating}
             >
               Close
