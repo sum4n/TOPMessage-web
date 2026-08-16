@@ -33,9 +33,9 @@ function App() {
       body: JSON.stringify({ name: name }),
     })
       .then((response) => {
-        // if (response.status > 400) {
-        //   throw new Error(response.statusText);
-        // }
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         return response.json();
       })
       .then((data) => {
