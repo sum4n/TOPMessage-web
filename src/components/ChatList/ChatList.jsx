@@ -30,7 +30,10 @@ function ChatList({ chats, loading, error }) {
                   id={chat.userId}
                   onClick={() => handleClick(chat)}
                 >
-                  {chat.user}
+                  <p className={styles.textName}>
+                    {chat.name ? chat.name : chat.email}
+                  </p>
+                  <span className={styles.textMuted}>{chat.email}</span>{" "}
                 </li>
               );
             })}{" "}
