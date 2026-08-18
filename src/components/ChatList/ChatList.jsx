@@ -10,7 +10,11 @@ function ChatList({ chats, loading, error }) {
 
   function handleClick(chat) {
     setChatId(chat.userId);
-    setChatUser({ user: chat.user, userId: chat.userId });
+    setChatUser({
+      name: chat.name,
+      email: chat.email,
+      userId: chat.userId,
+    });
   }
 
   if (loading) return <p>Loading...</p>;
