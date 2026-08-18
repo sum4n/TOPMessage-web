@@ -4,7 +4,7 @@ function ChatHeader({ user }) {
   return (
     <>
       <header className={styles.header}>
-        <p>{user.user}</p>
+        <p>{user.name ? user.name : user.email}</p>
       </header>
     </>
   );
