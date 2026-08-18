@@ -25,3 +25,15 @@
 .selected {
   background-color: lightgrey;
 }
+
+.textMuted {
+  color: #6c757d;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.textName {
+  margin: 0;
+  padding: 0;
+}
