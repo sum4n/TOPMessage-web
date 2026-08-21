@@ -36,7 +36,7 @@ function Sidebar({
             <img
               title="Chats"
               className={`${styles.sidebarIcon} ${barState === "chats" && styles.sidebarSelected}`}
-              src="/public/icons/message.svg"
+              src="/icons/message.svg"
               alt="message"
             />
           </li>
@@ -44,7 +44,7 @@ function Sidebar({
             <img
               title="Friends"
               className={styles.sidebarIcon}
-              src="/public/icons/friends.svg"
+              src="/icons/friends.svg"
               alt="friends"
             />
           </li>
@@ -52,7 +52,7 @@ function Sidebar({
             <img
               title="Groups"
               className={styles.sidebarIcon}
-              src="/public/icons/groups.svg"
+              src="/icons/groups.svg"
               alt="groups"
             />
           </li>
@@ -62,7 +62,7 @@ function Sidebar({
             <img
               title="Profile"
               className={`${styles.sidebarIcon} ${barState === "profile" && styles.sidebarSelected}`}
-              src="/public/icons/profile.svg"
+              src="/icons/profile.svg"
               alt="profile"
             />
           </li>
@@ -70,7 +70,7 @@ function Sidebar({
             <img
               title="Logout"
               className={styles.sidebarIcon}
-              src="/public/icons/logout.svg"
+              src="/icons/logout.svg"
               alt="logout"
             />
           </li>
