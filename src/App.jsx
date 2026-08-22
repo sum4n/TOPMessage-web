@@ -3,6 +3,8 @@ import "./App.css";
 import SideBar from "./components/SideBar/Sidebar.jsx";
 import { Link } from "react-router";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const token = localStorage.getItem("jwt-token");
 
@@ -24,7 +26,7 @@ function App() {
     setProfileUpdatingGeneralError(null);
     setProfileUpdating(true);
 
-    return fetch("http://localhost:3000/users/profile", {
+    return fetch(`${API_URL}/users/profile`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
@@ -54,7 +56,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/profile", {
+    fetch(`${API_URL}/users/profile`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +78,7 @@ function App() {
       .catch((error) => setProfileError(error))
       .finally(() => setProfileLoading(false));
 
-    fetch("http://localhost:3000/users/chats", {
+    fetch(`${API_URL}/users/chats`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

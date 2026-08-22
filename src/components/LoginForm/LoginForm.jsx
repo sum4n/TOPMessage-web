@@ -2,6 +2,8 @@ import styles from "./LoginForm.module.css";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function LoginForm({ registerLink }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +35,7 @@ function LoginForm({ registerLink }) {
     e.preventDefault();
     setLoading(true);
 
-    fetch("http://localhost:3000/users/log-in", {
+    fetch(`${API_URL}/users/log-in`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

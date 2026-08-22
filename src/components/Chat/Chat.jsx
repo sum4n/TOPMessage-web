@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "./Chat.module.css";
 import ChatHeader from "../ChatHeader/ChatHeader";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Chat({ id, chatUser }) {
   if (id === null || chatUser === null) return <p>Start a new conversation</p>;
 
@@ -21,7 +23,7 @@ function ChatWindow({ id, chatUser }) {
 
   // TODO: improve error handling.
   useEffect(() => {
-    fetch(`http://localhost:3000/messages/${id}`, {
+    fetch(`${API_URL}/messages/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -47,7 +49,7 @@ function ChatWindow({ id, chatUser }) {
   function handleSubmit(e) {
     e.preventDefault();
     setSubmitLoading(true);
-    fetch(`http://localhost:3000/messages/${id}`, {
+    fetch(`${API_URL}/messages/${id}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
